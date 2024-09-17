@@ -15,6 +15,8 @@ http {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+
 
         # SSL settings for upstream connections
         proxy_ssl_server_name on;
@@ -33,7 +35,7 @@ http {
         # WebSocket support for /api/ws
         location /api/ws {
             proxy_pass ${BACKEND_URL}/api/ws;
-            proxy_http_version 1.1;
+            #proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection "upgrade";
         }

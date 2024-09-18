@@ -24,7 +24,8 @@ http {
 
         # Frontend (Netlify)
         location / {
-            proxy_pass ${FRONTEND_URL};
+            set $empty ""
+            proxy_pass ${FRONTEND_URL}$empty;
         }
 
         # Backend (Koyeb)
